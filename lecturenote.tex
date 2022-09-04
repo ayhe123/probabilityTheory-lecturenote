@@ -1,7 +1,6 @@
 \documentclass[color=black,device=normal,lang=cn]{elegantnote}
 \usepackage{amsmath,amsthm,amssymb,amscd,mathrsfs}
 \usepackage{tikz,tikz-cd,tikz-3dplot}
-\usepackage{lscape}
 
 % 中文日期
 \date{\zhtoday}
@@ -824,9 +823,10 @@ backgroundcolor=\color{ecolor!15!geyecolor},
 \end{solution}
 \begin{note}
     书上的答案应该有点问题. 下面这行 Mathematica 代码可以用来画 $\dfrac{2\sqrt{16-x^2}}{16\pi}$ (这里的答案当 $R=4$ 时的情形)以及 $\dfrac{1}{\pi\sqrt{16-x^2}}$ (书上的答案当 $R=4$ 时的情形)的图象, 可以看到 $\dfrac{1}{\pi\sqrt{16-x^2}}$ 的值在 $x=\pm4$ 处比较大, 在 $x=0$ 处比较小, 这与实际情况不符.
-    \begin{verbatim}
+    \begin{lstlisting}
     Plot[{2 Sqrt[16 - x^2]/(16 Pi), 1/(Pi Sqrt[16 - x^2])}, {x, -4, 4}, 
-      PlotLabels -> Automatic]\end{verbatim}
+      PlotLabels -> Automatic]
+    \end{lstlisting}
 \end{note}
 \stepcounter{exercise}
 \begin{exercise}% 3.28
@@ -1947,12 +1947,13 @@ $\because X=x_0$, $\therefore f_X(x_0)>0$, $\therefore Y$ 的支集为 $\{y|f_Y(
     的值都一样, 都为 $P(A)$, 但是在 Mathematica 中, 上式取不同的 $a$, 计算结果不一样.
 
     取 $a=-10,0,10,20$ 分别计算上式的 Mathematica 程序如下:
-    \begin{verbatim}
+    \begin{lstlisting}
 a = {-10, 0, 10, 20};
 NIntegrate[
   1/(2 Pi 0.02^2)*Exp[-(x - a)^2/(2*0.02^2) - (y - a - 0.1)^2/(2*0.02^2)],
   {y, -Infinity, Infinity}, {x, -Infinity, y},
-  MinRecursion -> 100, MaxRecursion -> 100]\end{verbatim}
+  MinRecursion -> 100, MaxRecursion -> 100]
+    \end{lstlisting}
 \end{note}
 \stepcounter{exercise}
 \begin{exercise}% 5.32
