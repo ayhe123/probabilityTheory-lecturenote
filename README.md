@@ -15,12 +15,6 @@
 
 对于一些比较难理解的题目和定理，我也用 `Python` 写了仿真，放在 `simulation` 文件夹下。目前只做了 4 个仿真，如果有需要的话还可以接着做。
 
-## 使用方法
-
-由于只有一个 $\LaTeX$ 文件，所以我就不像[代数学笔记](https://github.com/ayhe123/algebra-lecturenote)那样打包编译好的文档了，仓库里的 `lecturenote_bg.pdf` 和 `lecturenote.pdf` 是我编译好的文档，分别是有背景颜色的和没有背景颜色的。
-
-想要自己编译的话，只需要把 `lecturenote.tex` 和  `lecturenote.sty` 放在一个文件夹下然后用 `xelatex` 编译即可。
-
 仿真需要安装 `numpy` 和 `matplotlib`：
 
 ```bash
@@ -29,3 +23,21 @@ pip3 install matplotlib
 ```
 
 之后就应该可以直接运行仿真。
+
+## 使用方法
+
+由于只有一个 $\LaTeX$ 文件，所以我就不像[代数学笔记](https://github.com/ayhe123/algebra-lecturenote)那样打包编译好的文档了，仓库里的 `lecturenote_bg.pdf` 和 `lecturenote.pdf` 是我编译好的文档，分别是有背景颜色的和没有背景颜色的。
+
+这个笔记使用 [ElegantNote 模板](https://github.com/ElegantLaTeX/ElegantNote)，我对 ElegantNote 进行了一些修改，主要是加入了一些 `mdframed` 定理环境，[源码地址](https://github.com/ayhe123/ElegantNote)
+
+想要自己编译的话，在 Linux 或者 MacOS 下执行：
+
+```bash
+git clone https://github.com/ayhe123/probabilityTheory-lecturenote.git
+git clone https://github.com/ayhe123/ElegantNote.git
+cp ElegantNote/elegantnote.cls algebra-lecturenote
+```
+
+然后用 `xelatex` 编译即可。
+
+也可以使用原版 ElegantNote，方法在[代数学笔记](https://github.com/ayhe123/algebra-lecturenote)那里有介绍。

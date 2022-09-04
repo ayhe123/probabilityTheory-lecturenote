@@ -1,8 +1,42 @@
-\documentclass{ctexart}
-\usepackage{lecturenote}
+\documentclass[color=black,device=normal,lang=cn]{elegantnote}
+\usepackage{amsmath,amsthm,amssymb,amscd,mathrsfs}
+\usepackage{tikz,tikz-cd,tikz-3dplot}
+\usepackage{lscape}
+
+% 中文日期
+\date{\zhtoday}
 
 \title{概率论笔记和习题}
-\author{ayhe123}
+\author{ayhe123\thanks{笔记发布在这个网址上: \url{https://github.com/ayhe123/probabilityTheory-lecturenote}}\thanks{本笔记采用 CC-BY-4.0 许可证, 更多信息见: \url{https://creativecommons.org/licenses/by/4.0}}}
+
+\numberwithin{equation}{section}
+
+% 定理环境
+\theoremstyle{plain}
+\newmdtheoremenv[style=mdftheoremstyle]{exercise}{习题}
+
+% 习题计数器
+\newcounter{exsection}[section]
+\numberwithin{exercise}{exsection}
+\renewcommand\theexercise{\theexsection.\arabic{exercise}}
+
+% 代码
+\lstset{
+language=Mathematica,
+numbers=none,
+keywordstyle=\color{winered},
+emphstyle=\color{frenchplum},
+frame=single,
+showstringspaces=false,
+showspaces=false,
+tabsize=4,
+breaklines=true,
+basicstyle=\normalsize\ttfamily,
+commentstyle=\color{teal},
+stringstyle=\color{violet},
+framerule=0pt,
+backgroundcolor=\color{ecolor!15!geyecolor},
+}
 
 \begin{document}
 \maketitle
@@ -65,19 +99,6 @@
     $\because S$ 是硬币的外接正方形, $\therefore S$ 的边长为 $1$.
 
     考虑 $S$ 的任一顶点(下面以左下角为例) $A$. $S$ 和网格不相交当且仅当 $A$ 位于图 \ref{f1.1} 中的蓝色区域.
-    \begin{figure}[htbp!]
-        \centering
-        \begin{tikzpicture}[scale=.7]
-            \draw [thick] (0,0) -- (2,0) -- (2,2) -- (0,2) -- (0,0);
-            \draw [thick] (0,0) -- (6,0) -- (6,6) -- (0,6) -- (0,0);
-            \draw [thick] (0,0) -- (2,0) -- (2,6) -- (0,6) -- (0,0);
-            \draw [thick] (0,0) -- (6,0) -- (6,2) -- (0,2) -- (0,0);
-            \draw [fill=cyan] (0,0) rectangle (2,2);
-            \node [below] at (1,0) {$1-x$};
-            \node [below] at (4,0) {$1$};
-        \end{tikzpicture}
-        \caption{$S$ 和网格不相交的充要条件}\label{f1.1}
-    \end{figure}
 
     设方格的边长为 $x$, 则图 \ref{f1.1} 中的蓝色区域的边长为 $x-1$. $\because A$ 是在方格上随机取点, $\therefore A$ 落在蓝色区域的概率
     \[p=\dfrac{(x-1)^2}{x^2}\leq0.01.\]
@@ -86,43 +107,24 @@
 
     当 $x\leq1$ 时硬币和网格一定相交, $\therefore$ 条件为 $1\leq x\leq\dfrac{10}{9}$.
 \end{solution}
+\begin{figure}[htbp!]
+    \centering
+    \begin{tikzpicture}[scale=.7]
+        \draw [thick] (0,0) -- (2,0) -- (2,2) -- (0,2) -- (0,0);
+        \draw [thick] (0,0) -- (6,0) -- (6,6) -- (0,6) -- (0,0);
+        \draw [thick] (0,0) -- (2,0) -- (2,6) -- (0,6) -- (0,0);
+        \draw [thick] (0,0) -- (6,0) -- (6,2) -- (0,2) -- (0,0);
+        \draw [fill=cyan] (0,0) rectangle (2,2);
+        \node [below] at (1,0) {$1-x$};
+        \node [below] at (4,0) {$1$};
+    \end{tikzpicture}
+    \caption{$S$ 和网格不相交的充要条件}\label{f1.1}
+\end{figure}
 \begin{exercise}% 1.14
     在同一小时内有两辆汽车独立地到达同一个加油站加油, 车 $A$ 加油需要 $5\text{min}$, 车 $B$ 加油需要 $8\text{min}$. 如果每辆车在这一小时内等可能地到达, 计算这两辆汽车在加油站不能相遇的概率.
 \end{exercise}
 \begin{solution}
     设 $A,B$ 在加油站的时间分别为区间 $(x,x+5)$ 和 $(y,y+8)$, 如图 \ref{f1.2}.
-    \begin{figure}[htbp!]
-        \centering
-        \begin{tikzpicture}[scale=.2]
-            \draw [->] (0,0) -- (30,0);
-            \draw [thick, red] (15,0) -- (20,0);
-            \draw [thick, cyan] (10,0) -- (18,0);
-            \fill [red] (15,0) circle [radius=.3];
-            \fill [red] (20,0) circle [radius=.3];
-            \fill [cyan] (10,0) circle [radius=.3];
-            \fill [cyan] (18,0) circle [radius=.3];
-            \node [above, red] at (15,0) {$x$};
-            \node [above, red] at (20,0) {$x+5$};
-            \node [below, cyan] at (10,0) {$y$};
-            \node [below, cyan] at (18,0) {$y+8$};
-            \node [above] at (30,0) {$t$};
-        \end{tikzpicture}
-        \begin{tikzpicture}[scale=.2]
-            \draw [->] (0,0) -- (30,0);
-            \draw [thick, red] (10,0) -- (15,0);
-            \draw [thick, cyan] (12,0) -- (20,0);
-            \fill [red] (10,0) circle [radius=.3];
-            \fill [red] (15,0) circle [radius=.3];
-            \fill [cyan] (12,0) circle [radius=.3];
-            \fill [cyan] (20,0) circle [radius=.3];
-            \node [above, red] at (10,0) {$x$};
-            \node [above, red] at (15,0) {$x+5$};
-            \node [below, cyan] at (12,0) {$y$};
-            \node [below, cyan] at (20,0) {$y+8$};
-            \node [above] at (30,0) {$t$};
-        \end{tikzpicture}
-        \caption{$A,B$ 在加油站相遇的两种情况, 红色表示 $A$, 蓝色表示 $B$}\label{f1.2}
-    \end{figure}
 
     考虑两辆汽车在加油站相遇的情形会比较方便. 从图 \ref{f1.2} 可以看出要使得两辆汽车在加油站相遇, $A,B$ 到达加油站的时刻 $x,y$ 应满足以下条件\footnote{$\because$ 区域的边界的测度为 $0$, 不会影响概率, $\therefore$ 不用考虑是否取等号.}:
     \[\begin{cases}
@@ -141,27 +143,59 @@
     \end{cases}\]
 
     $C$ 对应的区域是图 \ref{f1.3} 中的蓝色区域, $\overline{C}$ 对应的区域是图 \ref{f1.3} 左上和右下的两个三角形.
-    \begin{figure}[htbp!]
-        \centering
-        \begin{tikzpicture}[scale=.15]
-            \draw [->] (0,0) -- (65,0);
-            \draw [->] (0,0) -- (0,65);
-            \draw [fill=cyan] (0,5) -- (55,60) -- (60,60) -- (60,52) -- (8,0) -- (0,0);
-            \draw [thick] (0,0) rectangle (60,60);
-            \node [below] at (0,0) {$O$};
-            \node [below] at (65,0) {$x$};
-            \node [below] at (8,0) {$8$};
-            \node [below] at (60,0) {$60$};
-            \node [right] at (0,65) {$y$};
-            \node [left] at (0,5) {$5$};
-            \node [left] at (0,60) {$60$};
-        \end{tikzpicture}
-        \caption{$C$ 对应的区域}\label{f1.3}
-    \end{figure}
 
     $\therefore$
     \[P(\overline{C})=\dfrac{\dfrac{55^2}{2}+\dfrac{52^2}{2}}{60^2}\approx0.796.\]
 \end{solution}
+\begin{figure}[htbp!]
+    \centering
+    \begin{tikzpicture}[scale=.2]
+        \draw [->] (0,0) -- (30,0);
+        \draw [thick, red] (15,0) -- (20,0);
+        \draw [thick, cyan] (10,0) -- (18,0);
+        \fill [red] (15,0) circle [radius=.3];
+        \fill [red] (20,0) circle [radius=.3];
+        \fill [cyan] (10,0) circle [radius=.3];
+        \fill [cyan] (18,0) circle [radius=.3];
+        \node [above, red] at (15,0) {$x$};
+        \node [above, red] at (20,0) {$x+5$};
+        \node [below, cyan] at (10,0) {$y$};
+        \node [below, cyan] at (18,0) {$y+8$};
+        \node [above] at (30,0) {$t$};
+    \end{tikzpicture}
+    \begin{tikzpicture}[scale=.2]
+        \draw [->] (0,0) -- (30,0);
+        \draw [thick, red] (10,0) -- (15,0);
+        \draw [thick, cyan] (12,0) -- (20,0);
+        \fill [red] (10,0) circle [radius=.3];
+        \fill [red] (15,0) circle [radius=.3];
+        \fill [cyan] (12,0) circle [radius=.3];
+        \fill [cyan] (20,0) circle [radius=.3];
+        \node [above, red] at (10,0) {$x$};
+        \node [above, red] at (15,0) {$x+5$};
+        \node [below, cyan] at (12,0) {$y$};
+        \node [below, cyan] at (20,0) {$y+8$};
+        \node [above] at (30,0) {$t$};
+    \end{tikzpicture}
+    \caption{$A,B$ 在加油站相遇的两种情况, 红色表示 $A$, 蓝色表示 $B$}\label{f1.2}
+\end{figure}
+\begin{figure}[htbp!]
+    \centering
+    \begin{tikzpicture}[scale=.15]
+        \draw [->] (0,0) -- (65,0);
+        \draw [->] (0,0) -- (0,65);
+        \draw [fill=cyan] (0,5) -- (55,60) -- (60,60) -- (60,52) -- (8,0) -- (0,0);
+        \draw [thick] (0,0) rectangle (60,60);
+        \node [below] at (0,0) {$O$};
+        \node [below] at (65,0) {$x$};
+        \node [below] at (8,0) {$8$};
+        \node [below] at (60,0) {$60$};
+        \node [right] at (0,65) {$y$};
+        \node [left] at (0,5) {$5$};
+        \node [left] at (0,60) {$60$};
+    \end{tikzpicture}
+    \caption{$C$ 对应的区域}\label{f1.3}
+\end{figure}
 \addtocounter{exercise}{2}
 \begin{exercise}% 1.17
     证明:
@@ -319,16 +353,23 @@
 
     ``两个骰子的点数之和为 $7$ 的概率''的事件为 $A_3B_4+A_4B_3$, 概率为 $\dfrac{2}{36}$.
 
-    $\therefore$ 已知至少有一个骰子的点数是 $3$ 的情况下, 两个骰子的点数之和为 $7$ 的概率为 $\dfrac{2/36}{11/36}=\dfrac{2}{11}$.
+    $\therefore$ 已知至少有一个骰子的点数是 $3$ 的情况下, 两个骰子的点数之和为 $7$ 的概率为
+    \[\dfrac{2/36}{11/36}=\dfrac{2}{11}.\]
 
     (b) ``两个骰子的点数之和为 $6$ 的概率''的事件为 $A_3B_3$, 概率为 $\dfrac{1}{36}$.
 
-    $\therefore$ 已知至少有一个骰子的点数是 $3$ 的情况下, 两个骰子的点数之和为 $6$ 的概率为 $\dfrac{1/36}{11/36}=\dfrac{1}{11}\leq\dfrac{2}{11}$. $\therefore$ 两个骰子的点数之和更有可能是 $7$.
+    $\therefore$ 已知至少有一个骰子的点数是 $3$ 的情况下, 两个骰子的点数之和为 $6$ 的概率为
+    \[\dfrac{1/36}{11/36}=\dfrac{1}{11}\leq\dfrac{2}{11}.\]
+    
+    $\therefore$ 两个骰子的点数之和更有可能是 $7$.
 \end{solution}
 
 可以用两种不同的方式来看待条件概率, 一种是作为条件的事件 $C$ 改变了样本空间 $\Omega$, 另一种是 $C$ 没有改变 $\Omega$, 但改变了 $\mathcal{F}$ 上的概率(从原来的 $P$ 变为 $P_C$). 我们通常采用后一种看法, 但有时前一种看法会更方便.
 \begin{solution}[另一种解法]
-    用 $(a,b)$ 来表示一次试验, 含义是``第一个骰子的点数为 $a$, 第二个骰子的点数为 $b$.''已知至少有一个骰子的点数是 $3$ 的情况下, 样本空间 $\Omega=\{(1,3),(2,3),\cdots,(6,3),(3,1),(3,2),\cdots,(3,6)\}$, $^\#\Omega=11$(注意 $(3,3)$ 只计算了一次).
+    用 $(a,b)$ 来表示一次试验, 含义是``第一个骰子的点数为 $a$, 第二个骰子的点数为 $b$.'' 已知至少有一个骰子的点数是 $3$ 的情况下, 样本空间为
+    \[\Omega=\{(1,3),(2,3),\cdots,(6,3),(3,1),(3,2),\cdots,(3,6)\}.\]
+
+    有 $^\#\Omega=11$(注意 $(3,3)$ 只计算了一次).
 
     ``两个骰子的点数之和为 $7$ 的概率''的事件为 $\{(3,4),(4,3)\}$, $P(\{(3,4),(4,3)\})=\dfrac{2}{11}$, ``两个骰子的点数之和为 $6$ 的概率''的事件为 $\{(3,3)\}$, $P(\{(3,3)\})=\dfrac{1}{11}$.
 \end{solution}
@@ -470,7 +511,8 @@
 
     首先, ``主持人打开 $2$ 号门, 发现门后是羊''意味着车不可能在 $2$ 号门后, 即 $P(B|A_2)=0$. 其余的条件概率会随情况而变化.
 
-    (a) 如果汽车在 $1$ 号门后, 那么主持人可以从 $2$ 号和 $3$ 号门中任选一扇打开, $\therefore P(B|A_1)=\dfrac{1}{2}$.
+    (a) 如果汽车在 $1$ 号门后, 那么主持人可以从 $2$ 号和 $3$ 号门中任选一扇打开, $\therefore$
+    \[P(B|A_1)=\dfrac{1}{2}.\]
 
     如果汽车在 $3$ 号门后, 那么主持人一定会打开 $2$ 号门, $\therefore P(B|A_3)=1$. $\therefore$
     \[P(A_1|B)=\dfrac{\dfrac{1}{2}}{\dfrac{1}{2}+1}=\dfrac{1}{3},\quad P(A_3|B)=\dfrac{1}{\dfrac{1}{2}+1}=\dfrac{2}{3}.\]
@@ -544,6 +586,7 @@
 \begin{exercise}% 3.2
     证明: 如果常数 $a,b,c$ 使得 $g(x)=\exp(ax^2+bx+c),x\in\mathbb{R}$ 是概率密度, 则 $a<0$.
 \end{exercise}
+\newpage
 \begin{proof}
     证明逆否命题. 若 $a=0$, 则 $g(x)=e^{bx+c}$, $\because g$ 在 $\mathbb{R}$ 上不可积, $\therefore g$ 不是概率密度.
     
@@ -589,7 +632,8 @@
 
     (b) $100$ 台机床中发生故障的机床数 $n$ 服从二项分布 $\mathcal{B}(100,0.01)$. 机床在时间 $(0,t]$ 内发生故障时不能被及时维修的概率为
     \begin{align*}
-        1-P(n\leq 3) & =1-(0.99^{100}+C_{100}^1\cdot0.99^{99}\cdot0.01+C_{100}^2\cdot0.99^{98}\cdot0.01^2+C_{100}^3\cdot0.99^{97}\cdot0.01^3) \\
+        1-P(n\leq 3) & =1-(0.99^{100}+C_{100}^1\cdot0.99^{99}\cdot0.01 \\
+        & \quad+C_{100}^2\cdot0.99^{98}\cdot0.01^2+C_{100}^3\cdot0.99^{97}\cdot0.01^3) \\
         & \approx0.0184.
     \end{align*}
 \end{solution}
@@ -661,6 +705,7 @@
     $\therefore$
     \[P_Y(y)=\dfrac{1}{1+y^2}\sum\limits_{n=\infty}^\infty f(\arctan y+n\pi).\]
 \end{solution}
+\newpage
 \begin{exercise}% 3.21
     设 $X\sim\mathcal{B}(n,p)$.
 
@@ -750,7 +795,8 @@
     \[P(m\geq k_1,M\leq k_2)=\left(\dfrac{k_2-k_1+1}{6}\right)^n,\quad k_1\leq k_2.\]
     \begin{align*}
         P(m=2,M=5) & =P(m\geq 2,M\leq 5)-P(\{m\geq 3,M\leq 5\}\vee\{m\geq 2,M\leq 4\}) \\
-        & =P(m\geq 2,M\leq 5)-P(m\geq 3,M\leq 5)-P(m\geq 2,M\leq 4)+P(m\geq 3,M\leq 4) \\
+        & =P(m\geq 2,M\leq 5)-P(m\geq 3,M\leq 5) \\
+        & \quad-P(m\geq 2,M\leq 4)+P(m\geq 3,M\leq 4) \\
         & =\left(\dfrac{5-2+1}{6}\right)^n-\left(\dfrac{5-3+1}{6}\right)^n-\left(\dfrac{4-2+1}{6}\right)^n+\left(\dfrac{4-3+1}{6}\right)^n \\
         & =\dfrac{2^n}{3^n}-2\dfrac{1}{2^n}+\dfrac{1}{3^n}.
     \end{align*}
@@ -848,29 +894,29 @@
 \subsection{边缘分布函数}
 书上没有给出 $n$ 维随机向量的边缘分布函数的定义. 这里补充一下.
 \begin{definition}
-    设随机向量 $(X_1,\cdots,X_n)$ 的联合分布函数为 $F(x_1,\cdots,x_n)$, 用 $\infty$ 替换 $F(x_1,\cdots,x_n)$ 的一部分变量(不是所有的变量)得到的函数称为 $(X_1,\cdots,X_n)$ 的\textbf{边缘分布函数}.
+    设随机向量 $(X_1,X_2,\cdots,X_n)$ 的联合分布函数为 $F(x_1,x_2,\cdots,x_n)$, 称用 $\infty$ 替换 $F(x_1,x_2,\cdots,x_n)$ 的一部分变量(不是所有的变量)得到的函数为 $(X_1,X_2,\cdots,X_n)$ 的\textbf{边缘分布函数}.
 \end{definition}
 
 联合分布函数唯一确定了所有的边缘分布函数, 而即使所有的边缘分布函数都已知, 联合分布函数仍然不能唯一确定.
 \begin{example}
     容易验证, 表 \ref{tb1} 中的两个不同的分布具有相同的边缘分布函数.
-    \begin{table}[htbp!]
-        \centering
-        \begin{tabular}{c|cc}
-            $p_{ij}$ & $y_1$ & $y_2$ \\
-            \hline
-            $x_1$    & $1/4$ & $1/4$ \\
-            $x_2$    & $1/4$ & $1/4$ \\
-        \end{tabular}\quad\quad
-        \begin{tabular}{c|cc}
-            $p_{ij}$ & $y_1$ & $y_2$ \\
-            \hline
-            $x_1$    & $1/3$ & $1/6$ \\
-            $x_2$    & $1/6$ & $1/3$ \\
-        \end{tabular}
-        \caption{两个不同的分布}\label{tb1}
-    \end{table}
 \end{example}
+\begin{table}[htbp!]
+    \centering
+    \begin{tabular}{c|cc}
+        $p_{ij}$ & $y_1$ & $y_2$ \\
+        \hline
+        $x_1$    & $1/4$ & $1/4$ \\
+        $x_2$    & $1/4$ & $1/4$ \\
+    \end{tabular}\quad\quad
+    \begin{tabular}{c|cc}
+        $p_{ij}$ & $y_1$ & $y_2$ \\
+        \hline
+        $x_1$    & $1/3$ & $1/6$ \\
+        $x_2$    & $1/6$ & $1/3$ \\
+    \end{tabular}
+    \caption{两个不同的分布}\label{tb1}
+\end{table}
 \subsection{随机变量的独立性}
 补充几个定理的证明.
 \begin{theorem}
@@ -884,8 +930,10 @@
 
     ($\Leftarrow$) 在书上第 2 章的定义 2.2 中取 $k=n$ 即得式 (\ref{eq7.1}).
 
-    ($\Rightarrow$) $\forall 1\leq j_1<j_2<\cdots<j_k\leq n$. 在式 (\ref{eq7.1}) 中令 $\forall i\in\{1,2,\cdots,n\}\backslash\{j_1,j_2,\cdots,j_k\},x_i=\infty$, 得
-     \[P(X_{j_1}\leq x_{j_1},X_{j_2}\leq x_{j_2},\cdots,X_{j_k}\leq x_{j_k})=P(X_{j_1}\leq x_{j_1})P(X_{j_2}\leq x_{j_2})\cdots P(X_{j_k}\leq x_{j_k}).\]
+    ($\Rightarrow$) $\forall 1\leq j_1<j_2<\cdots<j_k\leq n$.
+    
+    在式 (\ref{eq7.1}) 中令 $\forall i\in\{1,2,\cdots,n\}\backslash\{j_1,j_2,\cdots,j_k\},x_i=\infty$, 得
+    \[P(X_{j_1}\leq x_{j_1},X_{j_2}\leq x_{j_2},\cdots,X_{j_k}\leq x_{j_k})=P(X_{j_1}\leq x_{j_1})P(X_{j_2}\leq x_{j_2})\cdots P(X_{j_k}\leq x_{j_k}).\]
 
     由书上第 2 章的定义 2.2 得事件 $\{X_1\leq x_1\},\{X_2\leq x_2\},\cdots,\{X_n\leq x_n\}$ 相互独立.
 \end{proof}
@@ -905,7 +953,8 @@
     设 $X,Y$ 是取值为 $\mathbb{Z}$ 的离散型随机变量, $p_{ij}=P(X=i,Y=j)$, 有
     \begin{align*}
         p_{ij} & =P(X=i,Y\leq j)-P(X=i,Y\leq j-1) \\
-        & =P(X\leq i,Y\leq j)-P(X\leq i-1,Y\leq j)-(P(X\leq i,Y\leq j-1)-P(X\leq i-1,Y\leq j-1)),
+        & =P(X\leq i,Y\leq j)-P(X\leq i-1,Y\leq j) \\
+        & \quad-(P(X\leq i,Y\leq j-1)-P(X\leq i-1,Y\leq j-1)),
     \end{align*}
 
     可以将 $P(X=i,Y\leq j)=P(X\leq i,Y\leq j)-P(X\leq i-1,Y\leq j)$ 理解为离散的``偏导数'', 将 $p_{ij}$ 理解为离散的``二阶混合偏导''.
@@ -913,7 +962,7 @@
 
 例 \ref{exa7.5} 需要用到下面的定理.
 \begin{theorem}[书上定理 3.2 的推广]\label{t7.2}
-    设 $D$ 是 $\mathbb{R}^n$ 上的开集, $X_1,\cdots,X_n$ 的联合分布函数 $F(x_1,\cdots,x_n)$ 在 $D$ 中可微, 且有连续的 $n$ 阶混合偏导数. 如果 $P((X_1,\cdots,X_n)\in D)=1$, 那么
+    设 $D$ 是 $\mathbb{R}^n$ 上的开集, 随机变量 $X_1,\cdots,X_n$ 的联合分布函数 $F(x_1,\cdots,x_n)$ 在 $D$ 中可微, 且有连续的 $n$ 阶混合偏导数. 如果 $P((X_1,\cdots,X_n)\in D)=1$, 那么
     \[f(x_1,x_2,\cdots,x_n)=\begin{cases}
         \dfrac{\partial F(x_1,x_2,\cdots,x_n)}{\partial x_1\partial x_2\cdots\partial x_n}, & (x_1,x_2,\cdots,x_n)\in D, \\
         0 & \text{otherwise}.
@@ -943,7 +992,8 @@
 
     $\therefore$
     \begin{align*}
-        F(x_1,x_2,\cdots,x_n) & =P(X_1\leq x_1,\cdots,X_{n-1}\leq x_{n-1})-P(X_1\leq x_1,\cdots,X_{n-1}\leq x_{n-1},X_n>x_n) \\
+        & F(x_1,x_2,\cdots,x_n) \\
+        & =P(X_1\leq x_1,\cdots,X_{n-1}\leq x_{n-1})-P(X_1\leq x_1,\cdots,X_{n-1}\leq x_{n-1},X_n>x_n) \\
         & =P(X_1\leq x_1,\cdots,X_{n-1}\leq x_{n-1})-\mu^{n-1}e^{-\mu x_n}\prod\limits_{i=1}^{n-1}(x_i-x_{i-1}). \\
     \end{align*}
 
@@ -1238,8 +1288,11 @@ $\because X=x_0$, $\therefore f_X(x_0)>0$, $\therefore Y$ 的支集为 $\{y|f_Y(
         1 & 1 \\
         1 & 0 \\
     \end{vmatrix}=-1,\quad\dfrac{\partial(x,y)}{\partial(z,w)}=\left(\dfrac{\partial(z,w)}{\partial(x,y)}\right)^{-1}=-1.\]
-
-    \[P(Z=z,W=w)=P(X=w,Y=z-w)=f(w,z-w)\mathrm{d}x\mathrm{d}y=\dfrac{1}{2}ze^{-z}\mathrm{d}w\mathrm{d}z,\quad w>0,z>0,\]
+    \begin{align*}
+        P(Z=z,W=w) & =P(X=w,Y=z-w) \\
+        & =f(w,z-w)\mathrm{d}x\mathrm{d}y \\
+        & =\dfrac{1}{2}ze^{-z}\mathrm{d}w\mathrm{d}z,\quad w>0,z>0,
+    \end{align*}
 
     $\therefore$
     \[f_Z(z)=\dfrac{1}{2}ze^{-z},\quad z>0.\]
@@ -1374,7 +1427,8 @@ $\because X=x_0$, $\therefore f_X(x_0)>0$, $\therefore Y$ 的支集为 $\{y|f_Y(
 
     $\because X,Y$ 相互独立, $\therefore$
     \begin{align*}
-        P(X\leq u)+P(Y\leq u)-P(X\leq u,Y\leq u) & =P(X\leq u)+P(Y\leq u)-P(X\leq u)P(Y\leq u) \\
+        & P(X\leq u)+P(Y\leq u)-P(X\leq u,Y\leq u) \\
+        & =P(X\leq u)+P(Y\leq u)-P(X\leq u)P(Y\leq u) \\
         & =1-(P(X\leq u)-1)(P(Y\leq u)-1) \\
         & =1-(1-e^{-\lambda u}-1)(1-e^{-\mu u}-1) \\
         & =1-e^{-(\lambda+\mu)u}.
@@ -1417,39 +1471,39 @@ $\because X=x_0$, $\therefore f_X(x_0)>0$, $\therefore Y$ 的支集为 $\{y|f_Y(
 \end{solution}
 \begin{note}
     在平面上作出 $\min(X,Y)\leq u$ 和 $\max(X,Y)\leq v$ 对应的区域如图 \ref{f8.1} 中的蓝色区域. 可以对区域 $D_1,D_2$ 积分得到 $\min(X,Y),\max(X,Y)$ 的分布函数.
-    \begin{figure}[htbp!]
-        \centering
-        \begin{tikzpicture}[scale=.4]
-            \draw [cyan,fill=cyan] (0,0) -- (9,0) -- (9,3) -- (3,3) -- (3,9) -- (0,9) -- (0,0);
-            \draw [thick,->] (0,0) -- (10,0);
-            \draw [thick,->] (0,0) -- (0,10);
-            \draw [thick,dashed] (3,0) -- (3,3);
-            \draw [thick,dashed] (0,3) -- (3,3);
-            \draw [thick] (3,3) -- (3,9);
-            \draw [thick] (3,3) -- (9,3);
-            \node [below] at (0,0) {$O$};
-            \node at (1.5,1.5) {$D_1$};
-            \node [below] at (10,0) {$x$};
-            \node [right] at (0,10) {$y$};
-            \node [left] at (0,3) {$u$};
-            \node [below] at (3,0) {$u$};
-        \end{tikzpicture}
-        \quad\quad\begin{tikzpicture}[scale=.4]
-            \draw [cyan,fill=cyan] (0,0) -- (6,0) -- (6,6) -- (0,6) -- (0,0);
-            \draw [thick,->] (0,0) -- (10,0);
-            \draw [thick,->] (0,0) -- (0,10);
-            \draw [thick,dashed] (6,0) -- (6,6);
-            \draw [thick,dashed] (0,6) -- (6,6);
-            \node at (3,3) {$D_2$};
-            \node [below] at (0,0) {$O$};
-            \node [below] at (10,0) {$x$};
-            \node [right] at (0,10) {$y$};
-            \node [left] at (0,6) {$v$};
-            \node [below] at (6,0) {$v$};
-        \end{tikzpicture}
-        \caption{左图为 $D_1=\{\min(X,Y)\leq u\}$, 右图为 $D_2=\{\max(X,Y)\leq v\}$}\label{f8.1}
-    \end{figure}
 \end{note}
+\begin{figure}[htbp!]
+    \centering
+    \begin{tikzpicture}[scale=.4]
+        \draw [cyan,fill=cyan] (0,0) -- (9,0) -- (9,3) -- (3,3) -- (3,9) -- (0,9) -- (0,0);
+        \draw [thick,->] (0,0) -- (10,0);
+        \draw [thick,->] (0,0) -- (0,10);
+        \draw [thick,dashed] (3,0) -- (3,3);
+        \draw [thick,dashed] (0,3) -- (3,3);
+        \draw [thick] (3,3) -- (3,9);
+        \draw [thick] (3,3) -- (9,3);
+        \node [below] at (0,0) {$O$};
+        \node at (1.5,1.5) {$D_1$};
+        \node [below] at (10,0) {$x$};
+        \node [right] at (0,10) {$y$};
+        \node [left] at (0,3) {$u$};
+        \node [below] at (3,0) {$u$};
+    \end{tikzpicture}
+    \quad\quad\begin{tikzpicture}[scale=.4]
+        \draw [cyan,fill=cyan] (0,0) -- (6,0) -- (6,6) -- (0,6) -- (0,0);
+        \draw [thick,->] (0,0) -- (10,0);
+        \draw [thick,->] (0,0) -- (0,10);
+        \draw [thick,dashed] (6,0) -- (6,6);
+        \draw [thick,dashed] (0,6) -- (6,6);
+        \node at (3,3) {$D_2$};
+        \node [below] at (0,0) {$O$};
+        \node [below] at (10,0) {$x$};
+        \node [right] at (0,10) {$y$};
+        \node [left] at (0,6) {$v$};
+        \node [below] at (6,0) {$v$};
+    \end{tikzpicture}
+    \caption{左图为 $D_1=\{\min(X,Y)\leq u\}$, 右图为 $D_2=\{\max(X,Y)\leq v\}$}\label{f8.1}
+\end{figure}
 \begin{exercise}% 4.31
     设随机向量 $(X,Y)$ 有联合密度 $f(x)g(y)$, $(U,V)$ 有联合密度
     \[p(u,v)=\begin{cases}
@@ -1585,7 +1639,8 @@ $\because X=x_0$, $\therefore f_X(x_0)>0$, $\therefore Y$ 的支集为 $\{y|f_Y(
 \begin{proof}
     (4) 有
     \begin{align*}
-        \operatorname{Var}\left(\sum\limits_{j=1}^nX_j\right) & =E\left(\sum\limits_{j=1}^nX_j-\sum\limits_{j=1}^n\mu_j\right)^2 \\
+        & \operatorname{Var}\left(\sum\limits_{j=1}^nX_j\right) \\
+        & =E\left(\sum\limits_{j=1}^nX_j-\sum\limits_{j=1}^n\mu_j\right)^2 \\
         & =E\left(\left(\sum\limits_{j=1}^nX_j\right)^2+\left(\sum\limits_{j=1}^n\mu_j\right)^2-2\left(\sum\limits_{j=1}^nX_j\right)\left(\sum\limits_{j=1}^n\mu_j\right)\right) \\
         & =E\left(\left(\sum\limits_{j=1}^nX_j\right)^2-\left(\sum\limits_{j=1}^n\mu_j\right)^2-2\left(\sum\limits_{j=1}^nX_j-\sum\limits_{j=1}^n\mu_j\right)\left(\sum\limits_{j=1}^n\mu_j\right)\right) \\
         & =E\left(\sum\limits_{j=1}^nX_j\right)^2-\left(\sum\limits_{j=1}^n\mu_j\right)^2-E\left(2\left(\sum\limits_{j=1}^nX_j-\sum\limits_{j=1}^n\mu_j\right)\left(\sum\limits_{j=1}^n\mu_j\right)\right) \\
@@ -1664,6 +1719,7 @@ $\because X=x_0$, $\therefore f_X(x_0)>0$, $\therefore Y$ 的支集为 $\{y|f_Y(
         & =\sqrt{2}\Gamma(3/2)=\sqrt{\dfrac{\pi}{2}}.
     \end{align*}
 \end{solution}
+\newpage
 \begin{exercise}% 5.9
     设 $X_1,X_2,\cdots,X_n$ 独立同分布, 且 $P(X_i>0)=1$. 对于 $k\leq n$, 计算
     \[E\dfrac{X_1+X_2+\cdots+X_k}{X_1+X_2+\cdots+X_n}.\]
@@ -1766,7 +1822,8 @@ $\because X=x_0$, $\therefore f_X(x_0)>0$, $\therefore Y$ 的支集为 $\{y|f_Y(
 
     令 $Y_i=X_i-EX_1\ (i=1,2,\cdots,n)$, 则 $Y_i$ 独立同分布, 均值为 $0$, 方差为 $\operatorname{Var}(X_1)$. $\therefore\forall i=1,\cdots,n,j=1,\cdots,\hat{i},\cdots,n,E(X_iX_j)=E(X_i)E(X_j)=0$. 有
     \begin{align*}
-        E\hat{\sigma}^2 & =\dfrac{1}{n-1}\sum\limits_{j=1}^nE\left(\dfrac{n-1}{n}Y_j-\dfrac{1}{n}\sum\limits_{\substack{i=1\\i\neq j}}^nY_i\right)^2 \\
+        & E\hat{\sigma}^2 \\
+        & =\dfrac{1}{n-1}\sum\limits_{j=1}^nE\left(\dfrac{n-1}{n}Y_j-\dfrac{1}{n}\sum\limits_{\substack{i=1\\i\neq j}}^nY_i\right)^2 \\
         & =\dfrac{1}{n-1}\sum\limits_{j=1}^nE\left(\left(\dfrac{n-1}{n}Y_j\right)^2+\left(\dfrac{1}{n}\sum\limits_{\substack{i=1\\i\neq j}}^nY_i\right)^2-2\dfrac{n-1}{n}Y_j\left(\dfrac{1}{n}\sum\limits_{\substack{i=1\\i\neq j}}^nY_i\right)\right) \\
         & =\dfrac{1}{n-1}\sum\limits_{j=1}^n\left(\left(\dfrac{n-1}{n}\right)^2EY_j^2+\dfrac{1}{n^2}\sum\limits_{\substack{i=1\\i\neq j}}^n\sum\limits_{\substack{k=1\\k\neq j}}^nE(Y_iY_k)-2\dfrac{n-1}{n^2}\sum\limits_{\substack{i=1\\i\neq j}}^nE(Y_iY_j)\right) \\
         & =\dfrac{1}{n-1}\sum\limits_{j=1}^n\left(\left(\dfrac{n-1}{n}\right)^2EY_j^2+\dfrac{1}{n^2}\sum\limits_{\substack{i=1\\i\neq j}}^nEY_i^2+\dfrac{1}{n^2}\sum\limits_{\substack{i=1\\i\neq j}}^n\sum\limits_{\substack{k=1\\k\neq j\\k\neq i}}^nE(Y_iY_k)-2\dfrac{n-1}{n^2}\sum\limits_{\substack{i=1\\i\neq j}}^nE(Y_iY_j)\right) \\
@@ -1783,7 +1840,8 @@ $\because X=x_0$, $\therefore f_X(x_0)>0$, $\therefore Y$ 的支集为 $\{y|f_Y(
 \begin{solution}
     $\because X_1,X_2,\cdots,X_n$ 相互独立, $\therefore$
     \begin{align*}
-        P(a_1X_1\leq x_1,a_2X_2\leq x_2,\cdots,a_nX_n\leq x_n) & =P(X_1\leq x_1/a_1,X_2\leq x_2/a_2,\cdots,X_n\leq x_n/a_n) \\
+        & P(a_1X_1\leq x_1,a_2X_2\leq x_2,\cdots,a_nX_n\leq x_n) \\
+        & =P(X_1\leq x_1/a_1,X_2\leq x_2/a_2,\cdots,X_n\leq x_n/a_n) \\
         & =P(X_1\leq x_1/a_1)P(X_2\leq x_2/a_2)\cdots P(X_n\leq x_n/a_n) \\
         & =P(a_1X_1\leq x_1)P(a_2X_2\leq x_2)\cdots P(a_nX_n\leq x_n).
     \end{align*}
@@ -1976,7 +2034,9 @@ NIntegrate[
     \[f_Z(z)=\dfrac{\lambda^n}{(n-1)!}e^{-\lambda z}z^{n-1},\quad z>0.\]
 \end{lemma}
 \begin{proof}
-    用数学归纳法. $n=1$ 时的情形由指数分布的定义得. 假设对符合题目要求的 $X_1,\cdots,X_{n-1},X_n$, $W=X_1+X_2+\cdots+X_{n-1}$ 有密度函数
+    用数学归纳法. $n=1$ 时的情形由指数分布的定义得.
+    
+    假设对符合题目要求的 $X_1,\cdots,X_{n-1},X_n$, $W=X_1+X_2+\cdots+X_{n-1}$ 有密度函数
     \[f_W(w)=\dfrac{\lambda^{n-1}}{(n-2)!}e^{-\lambda z}z^{n-2},\quad z>0.\]
 
     令 $Z=W+X_n=X_1+X_2+\cdots+X_n$, 则
@@ -2028,7 +2088,9 @@ NIntegrate[
 
 这可以看成是书上的定理 1.1 (1) 对连续型随机变量的推广.
 
-条件数学期望 $E(X|Y)$ 按定义是用一个 $\Omega\to\mathbb{R}$ 的函数 $Y$ 代替 $\mathbb{R}$ 上的函数 $m(y):=E(X|Y=y)$ 中的 $y$. 由于 $\Omega\to\mathbb{R}$ 的函数与 $\mathbb{R}$ 上的函数复合仍然是 $\Omega\to\mathbb{R}$ 的函数, $\therefore E(X|Y)$ 是一个随机变量. 用类似的方法可以解释书上第 7 章的式 (6.2).
+条件数学期望 $E(X|Y)$ 按定义是用一个 $\Omega\to\mathbb{R}$ 的函数 $Y$ 代替 $\mathbb{R}$ 上的函数
+\[m(y):=E(X|Y=y)\]
+中的 $y$. $\because\Omega\to\mathbb{R}$ 的函数与 $\mathbb{R}$ 上的函数复合仍然是 $\Omega\to\mathbb{R}$ 的函数, $\therefore E(X|Y)$ 是一个随机变量. 用类似的方法可以解释书上第 7 章的式 (6.2).
 \begin{example}[书上第 7 章的式 (6.2)]
     对于 $x\in\mathbb{N}_+$, 有
     \[x=\sum\limits_{k=1}^\infty I[x\geq k].\]
@@ -2174,7 +2236,8 @@ NIntegrate[
 \begin{proof}
     $\because Y_1,Y_2,\cdots,Y_n$ 是连续型随机变量的线性组合, $\therefore Y_1,Y_2,\cdots,Y_n$ 是连续型随机变量. 有
     \begin{align*}
-        P(Y_1=y_1,Y_2=y_2,\cdots,Y_n=y_n) & =P(X_{(1)}=y_1,X_{(2)}=y_1+y_2,\cdots,X_{(n)}=y_1+y_2+\cdots+y_n) \\
+        & P(Y_1=y_1,Y_2=y_2,\cdots,Y_n=y_n) \\
+        & =P(X_{(1)}=y_1,X_{(2)}=y_1+y_2,\cdots,X_{(n)}=y_1+y_2+\cdots+y_n) \\
         & =n!P(X_1=y_1)P(X_1=y_1+y_2)\cdots P(X_1=y_1+y_2+\cdots+y_n).
     \end{align*}
 
@@ -2385,7 +2448,7 @@ Lindeberg-Feller 定理的直观理解为:
     设 $(\Omega,\mathcal{F},P)$ 是概率空间, 随机变量 $X,X_1,X_2,\cdots$ 是 $\Omega$ 上的函数, 则 $X_n\to X$ a.s. 可以定义为对 $\exists A\subset\Omega$ 满足 $P(A)=1$, 函数列 $\{X_n(\omega)\}$ 在 $A$ 上收敛到 $X(\omega)$.
 \end{definition}
 \begin{theorem}
-    随机变量 $X,X_1,X_2,\cdots$ 满足定义 \ref{d13.2} 定义的 $X_n\to X$ a.s. 当且仅当 $X,X_1,X_2,\cdots$ 满足书上第 2 节定义的 $X_n\to X$ a.s..
+    随机变量 $X,X_1,X_2,\cdots$ 满足定义 \ref{d13.2} 定义的 $X_n\to X$ a.s. 当且仅当 $X,X_1,\cdots$ 满足书上第 2 节定义的 $X_n\to X$ a.s..
 \end{theorem}
 \begin{proof}
     ($\Rightarrow$) $\because$ 函数列 $\{X_n(\omega)\}$ 在 $A$ 上收敛到 $X(\omega)$, $\therefore A\subset\{X_n\to X\}$. $\therefore P(X_n\to X)\geq P(A)=1$.
@@ -2458,6 +2521,7 @@ Lindeberg-Feller 定理的直观理解为:
     $\because X_1,X_2,\cdots,X_n$ 独立同分布, $\therefore$
     \[P(X_{(1)}\geq M)=(P(X_1\geq M))^n\leq\left(\dfrac{P(X_1\geq M)EX_1^2}{M^2}\right)^{n/2}.\qedhere\]
 \end{proof}
+\newpage
 \begin{exercise}% 7.5
     设 $X$ 有概率密度 $f(x)=\dfrac{x^m}{m!}e^{-x},\ x\geq0$, 计算 $EX,\operatorname{Var}(X)$, 证明
     \[P(0<X<2(m+1))\geq\dfrac{m}{m+1}.\]
@@ -2558,7 +2622,10 @@ Lindeberg-Feller 定理的直观理解为:
 \end{lemma}
 \begin{proof}
     $\because X_n\to x$ a.s., $\therefore P\left(\lim\limits_{n\to\infty}X_n=x\right)=1$. 对称地, $P\left(\lim\limits_{n\to\infty}Y_n=y\right)=1$. $\therefore$ 由
-    \[P\left(\lim\limits_{n\to\infty}X_n=x\cup\lim\limits_{n\to\infty}Y_n=y\right)=P\left(\lim\limits_{n\to\infty}X_n=x\right)+P\left(\lim\limits_{n\to\infty}Y_n=y\right)-P\left(\lim\limits_{n\to\infty}X_n=x,\lim\limits_{n\to\infty}Y_n=y\right)\]
+    \begin{align*}
+        & P\left(\lim\limits_{n\to\infty}X_n=x\cup\lim\limits_{n\to\infty}Y_n=y\right) \\
+        & =P\left(\lim\limits_{n\to\infty}X_n=x\right)+P\left(\lim\limits_{n\to\infty}Y_n=y\right)-P\left(\lim\limits_{n\to\infty}X_n=x,\lim\limits_{n\to\infty}Y_n=y\right)
+    \end{align*}
     得
     \begin{align*}
         & P\left(\lim\limits_{n\to\infty}X_n=x,\lim\limits_{n\to\infty}Y_n=y\right) \\
@@ -2636,7 +2703,7 @@ Lindeberg-Feller 定理的直观理解为:
     $n=16641$ 是对于 $p$ 可以取到 $\dfrac{1}{2}$ 而言的. 如果已知 $0.01<p<0.4$ 或 $0.6<p<0.09$, 那么只需要调查 $3835$ 个人. $p$ 越接近 $1/2$, 要确定 $p$ 所需的信息量就越大.
 \end{note}
 \begin{exercise}% 7.15
-    设独立同分布的随机变量 $X_1,X_2,\cdots,X_n$ 和独立同分布的随机变量 $Y_1,Y_2,\cdots,Y_m$ 相互独立, $EX_1=\mu_1,\operatorname{Var}(X_1)=\sigma_1^2,EY_1=\mu_2,\operatorname{Var}(Y_1)=\sigma_2^2$. 对充分大的 $n,m$, 求 $\dfrac{1}{n}\sum\limits_{j=1}^nX_j-\dfrac{1}{m}\sum\limits_{k=1}^mY_k$ 的近似分布.
+    设独立同分布的随机变量 $X_1,\cdots,X_n$ 和独立同分布的随机变量 $Y_1,\cdots,Y_m$ 相互独立, $EX_1=\mu_1,\operatorname{Var}(X_1)=\sigma_1^2,EY_1=\mu_2,\operatorname{Var}(Y_1)=\sigma_2^2$. 对充分大的 $n,m$, 求 $\dfrac{1}{n}\sum\limits_{j=1}^nX_j-\dfrac{1}{m}\sum\limits_{k=1}^mY_k$ 的近似分布.
 \end{exercise}
 \begin{solution}
     由中心极限定理得
@@ -2664,9 +2731,10 @@ Lindeberg-Feller 定理的直观理解为:
 \begin{solution}
     (1) $\because N$ 服从 Poisson 分布, $\therefore E(N)=\operatorname{Var}(n)=18$.
     
-    设明天第 $i$ 份投保的缴款为 $X_i$, 则 $X_1,X_2,\cdots$ 独立同分布. 有 $E(S|N=n)=n\mu,\quad E(S|N)=N\mu$, $\therefore ES=E(E(S|N))=\mu EN$.
-
-    有
+    设明天第 $i$ 份投保的缴款为 $X_i$, 则 $X_1,X_2,\cdots$ 独立同分布. 有
+    \[E(S|N=n)=n\mu,\quad E(S|N)=N\mu,\]
+    
+    $\therefore ES=E(E(S|N))=\mu EN$. 有
     \[E(S^2|N=n)=E\left(\left(\sum\limits_{j=1}^nX_i\right)^2\Bigg|N=n\right).\]
 
     $\because N$ 与 $\{X_i\}$ 独立, 由书上第 4 章的定理 1.1 (3) 得 $N$ 与 $\left(\sum\limits_{j=1}^nX_i\right)^2$ 独立. $\therefore$
