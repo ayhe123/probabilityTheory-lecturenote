@@ -41,3 +41,9 @@ cp ElegantNote/elegantnote.cls algebra-lecturenote
 然后用 `xelatex` 编译即可。
 
 也可以使用原版 ElegantNote，方法在[代数学笔记](https://github.com/ayhe123/algebra-lecturenote)那里有介绍。
+
+## 许可证
+
+本笔记以及仿真采用 CC-BY-4.0 许可证, 更多信息见 https://creativecommons.org/licenses/by/4.0
+
+笔记的页脚中的 [图片](license.eps) 来自 https://creativecommons.org/about/downloads/

@@ -1,7 +1,11 @@
 """
 习题 2.33
 
+Copyright 2022 ayhe123
+
 2n+1 局 n+1 胜的比赛仿真
+
+此程序采用 CC-BY-4.0 许可证, 更多信息见 https://creativecommons.org/licenses/by/4.0
 """
 
 from collections import Counter

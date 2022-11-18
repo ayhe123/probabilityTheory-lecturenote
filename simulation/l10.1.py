@@ -1,5 +1,9 @@
 """
 引理 10.1
+
+Copyright 2022 ayhe123
+
+此程序采用 CC-BY-4.0 许可证, 更多信息见 https://creativecommons.org/licenses/by/4.0
 """
 
 import math

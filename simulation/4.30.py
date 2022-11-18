@@ -1,7 +1,11 @@
 """
 习题 4.30, 4.33
 
+Copyright 2022 ayhe123
+
 两个服从指数分布的变量的和, 最小值, 商得到的变量的分布
+
+此程序采用 CC-BY-4.0 许可证, 更多信息见 https://creativecommons.org/licenses/by/4.0
 """
 
 import numpy as np
