@@ -17,12 +17,13 @@
 \fancypagestyle{fancy-license-info}{%
   \fancyhf{}
   \fancyfoot[L]{
-    \includegraphics[scale=.5]{license.eps}\hspace{.5em}
-    \begin{minipage}[b][4ex][t]{25em}
-        \footnotesize{笔记发布在\href{https://github.com/ayhe123/probabilityTheory-lecturenote}{\color{blue}这里}\\
-        本笔记采用 CC-BY-4.0 许可证, 更多信息见\href{https://creativecommons.org/licenses/by/4.0}{\color{blue}这里}}
+    \href{https://creativecommons.org/licenses/by/4.0}{\includegraphics[scale=.5]{license.eps}}\hspace{.5em}
+    \begin{minipage}[b][4ex][t]{30em}
+        \footnotesize{笔记发布在: \url{https://github.com/ayhe123/probabilityTheory-lecturenote}\\
+        本笔记采用 CC-BY-4.0 许可证, 点击左边的图标查看更多信息}
     \end{minipage}}
   \fancyfoot[R]{\footnotesize{第 \thepage 页}}
+  \renewcommand{\footrulewidth}{0.4pt}
 }
 
 \pagestyle{fancy-license-info}
@@ -2335,9 +2336,9 @@ NIntegrate[
     考察上式两边的 $s^k$ 项, 有
     \[P(K=k)=\dfrac{C_{2n}^{k+n}}{2^{2n}}.\]
 \end{solution}
-\begin{remark}
+\begin{note}
     $K$ 的取值可能是负数, $\therefore K$ 没有母函数.
-\end{remark}
+\end{note}
 \addtocounter{exercise}{4}
 
 第 \ref{ex6.29}, \ref{ex6.30} 题需要用到下面的引理, 书上第 7 章的定理 3.1 也可以用这个引理来证明一般的情形.
@@ -2783,9 +2784,9 @@ Lindeberg-Feller 定理的直观理解为:
 
     代入得 $P(S\leq50)\approx0.3372$.
 \end{solution}
-\begin{remark}
+\begin{note}
     $\because N$ 的值不确定, $N$ 的值有可能很小, $\therefore$ 不能由于每天平均受理的投保数很多就认为 $S$ 一定是很多次投保的缴款数之和, 近似服从 Gauss 分布.
-\end{remark}
+\end{note}
 \addtocounter{exercise}{3}
 \begin{exercise}% 7.20
     证明公式
